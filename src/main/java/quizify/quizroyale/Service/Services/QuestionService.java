@@ -77,121 +77,134 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public List<Question> generateEasyRandomMATHSQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.MATHS,DifficultyLevel.EASY);
+
+
     }
 
     @Override
     public List<Question> generateMediumRandomMATHSQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.MATHS,DifficultyLevel.MEDIUM);
     }
 
     @Override
     public List<Question> generateHardRandomMATHSQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.MATHS,DifficultyLevel.EASY);
+
     }
 
     @Override
     public List<Question> generateHISTORYQuestions() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategory(QuestionCategory.HISTORY);
     }
 
     @Override
     public Question generateRandomHISTORYQuestion() {
-        return null;
+        List<Question> allQuestions=generateHISTORYQuestions();
+        int i =random.nextInt(allQuestions.size());
+        return allQuestions.get(i);
     }
 
     @Override
     public List<Question> generateEasyRandomHISTORYQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.HISTORY,DifficultyLevel.EASY);
     }
 
     @Override
     public List<Question> generateMediumRandomHISTORYQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.HISTORY,DifficultyLevel.MEDIUM);
     }
 
     @Override
     public List<Question> generateHardRandomHISTORYQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.HISTORY,DifficultyLevel.HARD);
+
     }
 
     @Override
     public List<Question> generateGEOGRAPHYQuestions() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategory(QuestionCategory.GEOGRAPHY);
     }
 
     @Override
     public Question generateRandomGEOGRAPHYQuestion() {
-        return null;
+        List<Question> allQuestions=generateGEOGRAPHYQuestions();
+        int i =random.nextInt(allQuestions.size());
+        return allQuestions.get(i);
     }
 
     @Override
     public List<Question> generateEasyRandomGEOGRAPHYQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.GEOGRAPHY,DifficultyLevel.EASY);
     }
 
     @Override
     public List<Question> generateMediumRandomGEOGRAPHYQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.GEOGRAPHY,DifficultyLevel.MEDIUM);
     }
 
     @Override
     public List<Question> generateHardRandomGEOGRAPHYQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.GEOGRAPHY,DifficultyLevel.HARD);
     }
 
     @Override
     public List<Question> generateLITERATUREQuestions() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategory(QuestionCategory.LITERATURE);
     }
+
 
     @Override
     public Question generateRandomLITERATUREQuestion() {
-        return null;
+        List<Question> allQuestions=generateLITERATUREQuestions();
+        int i =random.nextInt(allQuestions.size());
+        return allQuestions.get(i);
     }
 
     @Override
     public List<Question> generateEasyRandomLITERATUREQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.LITERATURE,DifficultyLevel.EASY);
     }
 
     @Override
     public List<Question> generateMediumRandomLITERATUREQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.LITERATURE,DifficultyLevel.MEDIUM);
     }
 
     @Override
     public List<Question> generateHardRandomLITERATUREQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.LITERATURE,DifficultyLevel.HARD);
     }
 
     @Override
     public List<Question> generateSPORTQuestions() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategory(QuestionCategory.SPORT);
     }
 
     @Override
     public Question generateRandomSPORTQuestion() {
-        return null;
+        List<Question> allQuestions=generateSPORTQuestions();
+        int i =random.nextInt(allQuestions.size());
+        return allQuestions.get(i);
     }
 
     @Override
     public List<Question> generateEasyRandomSPORTQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.SPORT,DifficultyLevel.EASY);
     }
 
     @Override
     public List<Question> generateMediumRandomSPORTQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.SPORT,DifficultyLevel.MEDIUM);
     }
 
     @Override
     public List<Question> generateHardRandomSPORTQuestion() {
-        return null;
+        return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.SPORT,DifficultyLevel.HARD);
     }
 
     @Override
-    public Question deleteQuestion(int idQuestion) {
-        return null;
+    public void deleteQuestion(int idQuestion) {
+         questionRepository.deleteById(idQuestion);
     }
 }

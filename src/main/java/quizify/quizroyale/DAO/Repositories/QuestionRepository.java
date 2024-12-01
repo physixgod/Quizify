@@ -10,4 +10,5 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question,Integer> {
     List<Question> getQuestionsByDifficultyLevel(DifficultyLevel difficultyLevel);
     List<Question> getQuestionsByQuestionCategory(QuestionCategory questionCategory);
+    List<Question> getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory questionCategory,DifficultyLevel difficultyLevel);
 }

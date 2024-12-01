@@ -38,5 +38,5 @@ public interface IQuestionService {
     List<Question> generateEasyRandomSPORTQuestion();
     List<Question> generateMediumRandomSPORTQuestion();
     List<Question> generateHardRandomSPORTQuestion();
-    Question deleteQuestion(int idQuestion);
+    void deleteQuestion(int idQuestion);
 }
