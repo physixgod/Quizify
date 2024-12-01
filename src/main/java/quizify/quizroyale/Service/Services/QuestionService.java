@@ -2,6 +2,7 @@ package quizify.quizroyale.Service.Services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import quizify.quizroyale.DAO.Entities.Question;
+import quizify.quizroyale.DAO.Entities.Quiz;
 import quizify.quizroyale.DAO.Enums.DifficultyLevel;
 import quizify.quizroyale.DAO.Enums.QuestionCategory;
 import quizify.quizroyale.DAO.Repositories.QuestionRepository;
@@ -187,24 +188,30 @@ public class QuestionService implements IQuestionService {
         int i =random.nextInt(allQuestions.size());
         return allQuestions.get(i);
     }
-
     @Override
     public List<Question> generateEasyRandomSPORTQuestion() {
         return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.SPORT,DifficultyLevel.EASY);
     }
-
     @Override
     public List<Question> generateMediumRandomSPORTQuestion() {
         return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.SPORT,DifficultyLevel.MEDIUM);
     }
-
     @Override
     public List<Question> generateHardRandomSPORTQuestion() {
         return questionRepository.getQuestionsByQuestionCategoryAndDifficultyLevel(QuestionCategory.SPORT,DifficultyLevel.HARD);
     }
-
     @Override
     public void deleteQuestion(int idQuestion) {
-         questionRepository.deleteById(idQuestion);
+        Question qs=questionRepository.findById(idQuestion).orElse(null);
+        List<Quiz> quizList = quizRepository.findAll();
+        for (Quiz q:quizList) {
+            for (Question question : q.getQuestions()) {
+                if (question == qs) {
+                    q.getQuestions().remove(qs);
+                    quizRepository.save(q);
+                }
+            }
+        }
+        questionRepository.deleteById(idQuestion);
     }
 }
