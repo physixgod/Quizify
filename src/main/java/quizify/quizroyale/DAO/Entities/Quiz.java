@@ -23,6 +23,6 @@ public class Quiz {
     LocalDateTime createdDate;
     LocalDateTime updatedDate;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Question> Questions;
+    private Set<Question> questions;
 
 }
