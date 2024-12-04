@@ -1,4 +1,4 @@
-package quizify.quizroyale.DAO.User;
+package quizify.quizroyale.DAO.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
