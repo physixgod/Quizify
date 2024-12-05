@@ -3,10 +3,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import quizify.quizroyale.DAO.Entities.Question;
 import quizify.quizroyale.DAO.Entities.Quiz;
+import quizify.quizroyale.DAO.Entities.User;
 import quizify.quizroyale.DAO.Enums.DifficultyLevel;
 import quizify.quizroyale.DAO.Enums.QuestionCategory;
 import quizify.quizroyale.DAO.Repositories.QuestionRepository;
 import quizify.quizroyale.DAO.Repositories.QuizRepository;
+import quizify.quizroyale.DAO.Repositories.UserRepository;
 import quizify.quizroyale.Service.Interfaces.IQuestionService;
 
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ import java.util.Random;
 public class QuestionService implements IQuestionService {
     QuestionRepository questionRepository;
     QuizRepository quizRepository;
+    UserRepository userRepository;
 
     @Override
     public Question addQuestion(Question question) {
@@ -25,6 +28,20 @@ public class QuestionService implements IQuestionService {
         }
         question.setCreatedDate(LocalDateTime.now());
         return questionRepository.save(question);
+    }
+
+    @Override
+    public Question addQuestinoByUser(Integer idUser, Question question) {
+        if (question == null) {
+            throw new IllegalArgumentException("Question cannot be null.");
+        }
+        User user= userRepository.findById(idUser).orElse(null);
+        if (user != null) {
+            question.setCreatedDate(LocalDateTime.now());
+            user.getQuestions().add(question);
+            userRepository.save(user);
+        }
+        return question;
     }
 
     @Override

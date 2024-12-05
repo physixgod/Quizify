@@ -10,6 +10,7 @@ import quizify.quizroyale.DAO.Enums.Role;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -28,7 +29,10 @@ public class User implements UserDetails {
     String password;
     @Enumerated(EnumType.STRING)
     Role role;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    Set<Question> questions;
+    @OneToMany(cascade = CascadeType.ALL)
+    Set<Quiz> quizzes;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

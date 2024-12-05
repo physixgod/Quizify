@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IQuestionService {
     Question addQuestion(Question question);
+    Question addQuestinoByUser(Integer idUser,Question question);
     Question updateQuestion(Question question);
     List<Question> getAllQuestions();
     List<Question> getAllEasyQuestions();
